@@ -11,10 +11,10 @@ rule xmltoroot:
             str(pdg) for pdg in config["targets"].values()
         )
     log:
-        log = "{tune}/logs/xmltoroot.log",
-        arg = "{tune}/logs/xmltoroot.arg",
+        log = "{tune}/logs/xmltoroot/xmltoroot.log",
+        arg = "{tune}/logs/xmltoroot/xmltoroot.arg",
     benchmark:
-        "{tune}/benchmark/xmltoroot.benchmark"
+        "{tune}/benchmark/xmltoroot/xmltoroot.benchmark"
     shell:
         """
         echo -f {input} \

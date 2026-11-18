@@ -1,2 +1,4 @@
 .snakemake/*
 G18_10a_00_000/*
+*.root
+*.xml
