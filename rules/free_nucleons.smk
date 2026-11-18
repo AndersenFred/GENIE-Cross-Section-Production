@@ -4,7 +4,7 @@ rule free_proton:
     params:
         target = 1000010010,
         n = config["n"],
-        energy_range = config["energy_range"]
+        energy_range = config["energy_range"],
         gxmlpath = config["gxmlpath"]
     output:
         "{tune}/free_nucleons/{lepton}/{egl}/splines_free_p.xml"
@@ -17,7 +17,7 @@ rule free_proton:
         egl = "|".join(FREE_NUCLEON_EGLS)
     shell:
         """
-        export GXMLPATH={gxmlpath}
+        export GXMLPATH={params.gxmlpath}
         export GMSGLAYOUT=FANCY
         echo \
             -p {wildcards.lepton} \
@@ -37,7 +37,7 @@ rule free_neutron:
     params:
         target = 1000000010,
         n = config["n"],
-        energy_range = config["energy_range"]
+        energy_range = config["energy_range"],
         gxmlpath = config["gxmlpath"]
     output:
         temp("{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml")
@@ -51,7 +51,7 @@ rule free_neutron:
     shell:
         """
         export GMSGLAYOUT=FANCY
-        export GXMLPATH={gxmlpath}
+        export GXMLPATH={params.gxmlpath}
         echo \
             -p {wildcards.lepton} \
             -t {params.target} \

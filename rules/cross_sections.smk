@@ -16,7 +16,7 @@ rule cross_section:
             "splines_free_nucleon.xml"
             if wc.egl in FREE_NUCLEON_EGLS
             else ""
-        )
+        ),
         gxmlpath = config["gxmlpath"]
     output:
         temp("{tune}/targets/{target}/{lepton}/{egl}/splines.xml")
@@ -28,7 +28,7 @@ rule cross_section:
     shell:
         """
         export GMSGLAYOUT=FANCY
-        export GXMLPATH={gxmlpath}
+        export GXMLPATH={params.gxmlpath}
         echo \
             {params.input_cross_sections} \
             -p {wildcards.lepton} \
