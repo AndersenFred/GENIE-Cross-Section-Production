@@ -21,7 +21,7 @@ rule free_proton:
         """
         export GXMLPATH={params.gxmlpath}
         export GMSGLAYOUT=FANCY
-        echo \
+        echo --disable-bare-xsec-pre-calc \
             -p {wildcards.lepton} \
             -t {params.target} \
             --tune {wildcards.tune} \
@@ -56,7 +56,7 @@ rule free_neutron:
         """
         export GMSGLAYOUT=FANCY
         export GXMLPATH={params.gxmlpath}
-        echo \
+        echo --disable-bare-xsec-pre-calc \
             -p {wildcards.lepton} \
             -t {params.target} \
             --tune {wildcards.tune} \
