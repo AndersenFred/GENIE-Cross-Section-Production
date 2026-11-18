@@ -1,0 +1,44 @@
+tune: "G18_10a_00_000"
+leptons: 
+ - "14"
+ - "-14"
+ - "16"
+ - "-16"
+ - "12"
+ - "-12"
+
+targets:
+  H1:   1000010010
+  C12:  1000060120
+  O16:  1000080160
+  Na23: 1000110230
+  Mg24: 1000120240
+  Al27: 1000130270
+  Si28: 1000140280
+  S32:  1000160320
+  Cl35: 1000170350
+  K39:  1000190390
+  Ca40: 1000200400
+  Ti48: 1000220480
+  Fe56: 1000260560
+  Ni58: 1000280580
+  Br80: 1000350800
+
+event-generator-lists:
+  - "CCDIS"
+  - "NCDIS"
+  - "CCQE"
+  - "NCEL"
+  - "WeakMEC"
+  - "COH"
+  - "DFR"
+  - "RES"
+  - "NuE"
+
+energy_range: 1000
+n: 250
+
+free_nucleon_event_generator_lists:
+  - "CCDIS"
+  - "NCDIS"
+  - "RES"
