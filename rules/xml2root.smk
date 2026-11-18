@@ -20,6 +20,6 @@ rule xmltoroot:
             -p {params.lepton} \
             -t {params.targetlist} \
             > {log.arg} 2>&1
-        ARGS="$(echo "$(cat {log.arg})")"
+        ARG="$(echo "$(cat {log.arg})")"
         gspl2root $ARG > {log} 2>&1
         """
