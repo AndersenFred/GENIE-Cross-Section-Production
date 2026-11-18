@@ -1,0 +1,30 @@
+executor: slurm
+
+slurm-logdir: "slurm-logs/"
+max-jobs-per-second: 1
+slurm-init-seconds-before-status-checks: 30
+seconds-between-status-checks: 10
+max-status-checks-per-second: 1
+latency-wait: 60
+jobs: 30
+local-cores: 1
+
+default-resources:
+  - slurm_account="km3net"
+  - slurm_partition="htc"
+  - runtime=720  # min
+  - mem_mb=3050
+  - disk_mb=3000
+
+    
+default-storage-provider: fs
+shared-fs-usage:
+  - persistence
+  - software-deployment
+  - sources
+  - source-cache
+remote-job-local-storage-prefix: "/tmp/$USER/$SLURM_JOB_ID"
+local-storage-prefix: "$TMPDIR"
+
+rerun-incomplete: 1
+
