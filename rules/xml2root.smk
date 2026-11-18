@@ -9,13 +9,17 @@ rule xmltoroot:
             str(pdg) for pdg in config["targets"].values()
         )
     log:
-        "{tune}/logs/xmltoroot.log"
+        log = "{tune}/logs/xmltoroot.log",
+        arg = "{tune}/logs/xmltoroot.arg",
+    benchmark:
+        "{tune}/benchmark/xmltoroot.benchmark"
     shell:
         """
-        gspl2root \
-            -f {input} \
+        echo -f {input} \
             -o {output} \
             -p {params.lepton} \
             -t {params.targetlist} \
-            > {log} 2>&1
+            > {log.arg} 2>&1
+        ARGS="$(echo "$(cat {log.arg})")"
+        gspl2root $ARG > {log} 2>&1
         """

@@ -17,16 +17,19 @@ rule cross_section:
             if wc.egl in FREE_NUCLEON_EGLS
             else ""
         )
+        gxmlpath = config["gxmlpath"]
     output:
         temp("{tune}/targets/{target}/{lepton}/{egl}/splines.xml")
     log:
-        "{tune}/logs/targets/{target}/{lepton}/{egl}.log"
+        log = "{tune}/logs/targets/{target}/{lepton}/{egl}.log",
+        arg = "{tune}/logs/targets/{target}/{lepton}/{egl}.arg"
     benchmark:
         "{tune}/benchmark/targets/{target}/{lepton}/{egl}.benchmark"
     shell:
         """
         export GMSGLAYOUT=FANCY
-        gmkspl \
+        export GXMLPATH={gxmlpath}
+        echo \
             {params.input_cross_sections} \
             -p {wildcards.lepton} \
             -t {params.target} \
@@ -35,5 +38,7 @@ rule cross_section:
             -n {params.n} \
             -e {params.energy_range} \
             -o {output} \
-            > {log} 2>&1
+            > {log.arg} 2>&1
+        ARGS="$(echo "$(cat {log.arg})")"
+        gmkspl $ARGS > {log.log} 2>&1
         """

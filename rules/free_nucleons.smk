@@ -5,18 +5,21 @@ rule free_proton:
         target = 1000010010,
         n = config["n"],
         energy_range = config["energy_range"]
+        gxmlpath = config["gxmlpath"]
     output:
         "{tune}/free_nucleons/{lepton}/{egl}/splines_free_p.xml"
     log:
-        "{tune}/logs/free_p/{lepton}/{egl}.log"
+        log = "{tune}/logs/free_nucleons/{lepton}/{egl}_p.log",
+        arg = "{tune}/logs/free_nucleons/{lepton}/{egl}_p.arg"
     benchmark:
-        "{tune}/benchmark/free_p/{lepton}/{egl}.benchmark"
+        "{tune}/benchmark/free_nucleons/{lepton}/{egl}_p.benchmark"
     wildcard_constraints:
         egl = "|".join(FREE_NUCLEON_EGLS)
     shell:
         """
+        export GXMLPATH={gxmlpath}
         export GMSGLAYOUT=FANCY
-        gmkspl \
+        echo \
             -p {wildcards.lepton} \
             -t {params.target} \
             --tune {wildcards.tune} \
@@ -24,7 +27,9 @@ rule free_proton:
             -n {params.n} \
             -e {params.energy_range} \
             -o {output} \
-            > {log} 2>&1
+            > {log.arg} 2>&1
+        ARGS="$(echo "$(cat {log.arg})")"
+        gmkspl $ARGS > {log.log} 2>&1
         """
 
 
@@ -33,18 +38,21 @@ rule free_neutron:
         target = 1000000010,
         n = config["n"],
         energy_range = config["energy_range"]
+        gxmlpath = config["gxmlpath"]
     output:
         temp("{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml")
     log:
-        "{tune}/logs/free_n/{lepton}/{egl}.log"
+        log = "{tune}/logs/free_nucleons/{lepton}/{egl}_n.log",
+        arg = "{tune}/logs/free_nucleons/{lepton}/{egl}_n.arg"
     benchmark:
-        "{tune}/benchmark/free_n/{lepton}/{egl}.benchmark"
+        "{tune}/benchmark/free_nucleons/{lepton}/{egl}_n.benchmark"
     wildcard_constraints:
         egl = "|".join(FREE_NUCLEON_EGLS)
     shell:
         """
         export GMSGLAYOUT=FANCY
-        gmkspl \
+        export GXMLPATH={gxmlpath}
+        echo \
             -p {wildcards.lepton} \
             -t {params.target} \
             --tune {wildcards.tune} \
@@ -52,7 +60,9 @@ rule free_neutron:
             -n {params.n} \
             -e {params.energy_range} \
             -o {output} \
-            > {log} 2>&1
+            > {log.arg} 2>&1
+        ARGS="$(echo "$(cat {log.arg})")"
+        gmkspl $ARGS > {log.log} 2>&1
         """
 
 
@@ -62,11 +72,18 @@ rule free_nucleon:
         neutron = "{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml"
     output:
         temp("{tune}/free_nucleons/{lepton}/{egl}/splines_free_nucleon.xml")
+    log:
+        log = "{tune}/logs/free_nucleons/{lepton}/{egl}.log",
+        arg = "{tune}/logs/free_nucleons/{lepton}/{egl}.arg"
+    benchmark:
+        "{tune}/benchmark/free_nucleons/{lepton}/{egl}_free_nucleon.benchmark"
     wildcard_constraints:
         egl = "|".join(FREE_NUCLEON_EGLS)
     shell:
         """
-        gspladd \
-            -f {input.proton},{input.neutron} \
-            -o {output}
+
+        echo -f {input.proton},{input.neutron} \
+            -o {output} > {log.arg} 2>&1
+        ARGS="$(echo "$(cat {log.arg})")"
+        gspladd $ARGS > {log} 2>&1
         """

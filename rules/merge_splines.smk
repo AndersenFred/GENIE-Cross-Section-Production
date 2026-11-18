@@ -7,11 +7,18 @@ rule merge_splines:
             lepton=config["leptons"],
             egl=config["event-generator-lists"]
         )
+    log:
+        log = "{tune}/logs/merge/{tune}.log",
+        arg = "{tune}/logs/merge/{tune}.arg"
+    benchmark:
+        "{tune}/benchmark/xmltoroot.benchmark"
     params:
         files=lambda wc, input: ",".join(input)
     output:
         temp("{tune}.xml")
     shell:
         """
-        gspladd -f {params.files} -o {output}
+        echo -f {params.files} -o {output} > {log.arg} 2>&1
+        ARGS="$(echo "$(cat {log.arg})")"
+        gspladd $ARGS > {log.log} 2>&1
         """
