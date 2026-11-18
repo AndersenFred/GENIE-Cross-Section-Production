@@ -1,3 +1,5 @@
+localrules: free_nucleon
+
 FREE_NUCLEON_EGLS = config["free_nucleon_event_generator_lists"]
 
 rule free_proton:
