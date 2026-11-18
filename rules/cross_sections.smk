@@ -1,4 +1,6 @@
 rule cross_section:
+    container: 
+        config.get("container", None)
     input:
         lambda wc: (
             f"{wc.tune}/free_nucleons/{wc.lepton}/{wc.egl}/"

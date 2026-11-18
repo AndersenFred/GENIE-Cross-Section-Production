@@ -1,4 +1,6 @@
 rule xmltoroot:
+    container: 
+        config.get("container", None)
     input:
         "{tune}.xml"
     output:

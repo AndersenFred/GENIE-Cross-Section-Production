@@ -1,4 +1,6 @@
 rule merge_splines:
+    container: 
+        config.get("container", None)
     input:
         lambda wc: expand(
             "{tune}/targets/{target}/{lepton}/{egl}/splines.xml",

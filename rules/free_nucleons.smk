@@ -1,6 +1,8 @@
 FREE_NUCLEON_EGLS = config["free_nucleon_event_generator_lists"]
 
 rule free_proton:
+    container: 
+        config.get("container", None)
     params:
         target = 1000010010,
         n = config["n"],
@@ -34,6 +36,8 @@ rule free_proton:
 
 
 rule free_neutron:
+    container: 
+        config.get("container", None)
     params:
         target = 1000000010,
         n = config["n"],
@@ -67,6 +71,8 @@ rule free_neutron:
 
 
 rule free_nucleon:
+    container: 
+        config.get("container", None)
     input:
         proton = "{tune}/free_nucleons/{lepton}/{egl}/splines_free_p.xml",
         neutron = "{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml"
