@@ -34,7 +34,7 @@ rule free_neutron:
         n = config["n"],
         energy_range = config["energy_range"]
     output:
-        "{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml"
+        temp("{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml")
     log:
         "{tune}/logs/free_n/{lepton}/{egl}.log"
     benchmark:
@@ -61,7 +61,7 @@ rule free_nucleon:
         proton = "{tune}/free_nucleons/{lepton}/{egl}/splines_free_p.xml",
         neutron = "{tune}/free_nucleons/{lepton}/{egl}/splines_free_n.xml"
     output:
-        "{tune}/free_nucleons/{lepton}/{egl}/splines_free_nucleon.xml"
+        temp("{tune}/free_nucleons/{lepton}/{egl}/splines_free_nucleon.xml")
     wildcard_constraints:
         egl = "|".join(FREE_NUCLEON_EGLS)
     shell:

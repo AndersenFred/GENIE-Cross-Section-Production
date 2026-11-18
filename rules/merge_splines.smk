@@ -10,7 +10,7 @@ rule merge_splines:
     params:
         files=lambda wc, input: ",".join(input)
     output:
-        "{tune}.xml"
+        temp("{tune}.xml")
     shell:
         """
         gspladd -f {params.files} -o {output}

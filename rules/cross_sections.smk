@@ -18,7 +18,7 @@ rule cross_section:
             else ""
         )
     output:
-        "{tune}/targets/{target}/{lepton}/{egl}/splines.xml"
+        temp("{tune}/targets/{target}/{lepton}/{egl}/splines.xml")
     log:
         "{tune}/logs/targets/{target}/{lepton}/{egl}.log"
     benchmark:
