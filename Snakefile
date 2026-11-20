@@ -8,11 +8,7 @@ wildcard_constraints:
     tune = config["tune"]
 rule all:
     input:
-        expand(
-            "{tune}.xml",
-            tune=[config["tune"]]
-        ),
-        expand(
-            "{tune}.root",
-            tune=[config["tune"]]
-        ),
+        [
+            expand(file, tune=config["tune"])
+            for file in config["output"]
+        ]

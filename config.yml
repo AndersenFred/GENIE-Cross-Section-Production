@@ -11,6 +11,10 @@ leptons:
 # - "11"
 # - "-11"
 
+output:
+  - "{tune}.root"
+  - "{tune}.xml"
+
 targets:
   n:    1000000010
   H1:   1000010010
