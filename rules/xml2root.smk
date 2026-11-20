@@ -6,6 +6,7 @@ rule xmltoroot:
     output:
         temp("{tune}.root")
     params:
+        energy_range=config["energy_range"],
         lepton = ",".join(config["leptons"]),
         targetlist = ",".join(
             str(pdg) for pdg in config["targets"].values()
@@ -21,7 +22,8 @@ rule xmltoroot:
             -o {output} \
             -p {params.lepton} \
             -t {params.targetlist} \
-            --tune {tune} \
+            --tune {wildcards.tune} \
+            -e {params.energy_range} \
             > {log.arg} 2>&1
         ARG="$(echo "$(cat {log.arg})")"
         gspl2root $ARG > {log} 2>&1

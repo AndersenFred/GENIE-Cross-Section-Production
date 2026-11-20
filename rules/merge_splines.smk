@@ -13,7 +13,7 @@ rule merge_splines:
         log = "{tune}/logs/merge/{tune}.log",
         arg = "{tune}/logs/merge/{tune}.arg"
     benchmark:
-        "{tune}/benchmark/xmltoroot.benchmark"
+        "{tune}/benchmark/merge/merge_splines.benchmark"
     params:
         files=lambda wc, input: ",".join(input)
     output:
