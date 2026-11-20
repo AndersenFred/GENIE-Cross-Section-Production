@@ -11,8 +11,6 @@ Free-nucleon cross sections are generated separately for protons and neutrons an
 
 The `free_nucleon` branch is conditional: it is required only for EGLs configured in `free_nucleon_event_generator_lists`. For other EGLs, `cross_section` runs without `--input-cross-sections`.
 
-A rendered rule graph is provided in [`rulegraph.svg`](rulegraph.svg).
-
 ## Configuration
 
 The workflow is configured through `config.yml`. The main settings are:
@@ -62,3 +60,7 @@ The merged tune-level XML and ROOT outputs are:
 ## Profiles
 
 **At the moment, I do not recommend using Snakemake profiles with this workflow as there are several only seconds long jobs.** 
+
+## Rulegraph
+<img src="rulegraph.svg">.
+
