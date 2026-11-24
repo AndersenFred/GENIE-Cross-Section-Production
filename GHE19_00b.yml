@@ -8,8 +8,7 @@ leptons:
  - "-16"
  - "12"
  - "-12"
-# - "11"
-# - "-11"
+
 
 output:
   - "{tune}.root"
@@ -35,9 +34,14 @@ targets:
 
 
 event-generator-lists:
-  - "GLRES"
-  - "HENuEl"
-  - "PhotonRES"
+  - "GLRES-Ele"
+  - "GLRES-Mu"
+  - "GLRES-Tau"
+  - "CCHENuEl"
+  - "NCHENuEl"
+  - "PhotonRES-Ele"
+  - "PhotonRES-Mu"
+  - "PhotonRES-Tau"
   - "PhotonCOH"
   - "CCHEDIS"
   - "NCHEDIS"
@@ -45,5 +49,14 @@ event-generator-lists:
 n: 5000
 
 free_nucleon_event_generator_lists:
+  - "GLRES-Ele"
+  - "GLRES-Mu"
+  - "GLRES-Tau"
+  - "CCHENuEl"
+  - "NCHENuEl"
+  - "PhotonRES-Ele"
+  - "PhotonRES-Mu"
+  - "PhotonRES-Tau"
+  - "PhotonCOH"
   - "CCHEDIS"
   - "NCHEDIS"
