@@ -1,4 +1,4 @@
-configfile: "config.yml"
+configfile: "G18_10a.yml"
 
 include: "rules/free_nucleons.smk"
 include: "rules/cross_sections.smk"

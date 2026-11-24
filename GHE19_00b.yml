@@ -1,0 +1,49 @@
+tune: "GHE19_00b_00_000"
+gxmlpath: ""
+#container: "path/to/genie/container"
+leptons: 
+ - "14"
+ - "-14"
+ - "16"
+ - "-16"
+ - "12"
+ - "-12"
+# - "11"
+# - "-11"
+
+output:
+  - "{tune}.root"
+  - "{tune}.xml"
+
+targets:
+  n:    1000000010
+  H1:   1000010010
+  C12:  1000060120
+  O16:  1000080160
+  Na23: 1000110230
+  Mg24: 1000120240
+  Si28: 1000140280
+  S32:  1000160320
+  Cl35: 1000170350
+  K39:  1000190390
+  Ca40: 1000200400
+  Ti48: 1000220480
+  Fe56: 1000260560
+  Ni58: 1000280580
+  Br80: 1000350800
+  Al27: 1000130270
+
+
+event-generator-lists:
+  - "GLRES"
+  - "HENuEl"
+  - "PhotonRES"
+  - "PhotonCOH"
+  - "CCHEDIS"
+  - "NCHEDIS"
+
+n: 5000
+
+free_nucleon_event_generator_lists:
+  - "CCHEDIS"
+  - "NCHEDIS"
