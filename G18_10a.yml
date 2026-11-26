@@ -8,7 +8,7 @@ leptons:
  - "-16"
  - "12"
  - "-12"
-# - "11"
+ - "11"
 # - "-11"
 
 output:
@@ -18,6 +18,7 @@ output:
 targets:
   n:    1000000010
   H1:   1000010010
+  D2:   1000010020
   C12:  1000060120
   O16:  1000080160
   Na23: 1000110230
@@ -46,10 +47,10 @@ event-generator-lists:
   - "DFR"
   - "RES"
   - "NuE"
-#  - "EMDIS"
-#  - "EMQE"
-#  - "EMMEC"
-#  - "EMRES"
+  - "EMDIS"
+  - "EMQE"
+  - "EMMEC"
+  - "EMRES"
 
 
 energy_range: 1000
@@ -63,6 +64,6 @@ free_nucleon_event_generator_lists:
   - "LambdaCCQE"
   - "NCEL"
   - "RES"
-#  - "EMDIS"
-#  - "EMQE"
-#  - "EMRES"
+  - "EMDIS"
+  - "EMQE"
+  - "EMRES"

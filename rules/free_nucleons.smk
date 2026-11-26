@@ -11,7 +11,7 @@ rule free_proton:
         energy_range = config["energy_range"],
         gxmlpath = config["gxmlpath"]
     output:
-        "{tune}/free_nucleons/{lepton}/{egl}/splines_free_p.xml"
+        temp("{tune}/free_nucleons/{lepton}/{egl}/splines_free_p.xml")
     log:
         log = "{tune}/logs/free_nucleons/{lepton}/{egl}_p.log",
         arg = "{tune}/logs/free_nucleons/{lepton}/{egl}_p.arg"
